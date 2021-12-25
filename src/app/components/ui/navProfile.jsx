@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import LogOut from "../../layouts/logOut";
 
 const NavProfile = () => {
     const [isOpen, setOpen] = useState(false);
@@ -26,9 +27,11 @@ const NavProfile = () => {
                     />
                 </div>
                 <div
-                    className={"w-100 dropdown-menu" + (isOpen ? " show" : "")}
+                    className={
+                        "w-100 dropdown-menu" + (isOpen ? " show" : "")
+                    }
                 >
-                    <h1>some text</h1>
+                    <LogOut />
                 </div>
             </div>
         </>
