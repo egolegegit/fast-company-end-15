@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import LogOut from "../../layouts/logOut";
 
 const NavProfile = () => {
     const [isOpen, setOpen] = useState(false);
@@ -28,10 +28,18 @@ const NavProfile = () => {
                 </div>
                 <div
                     className={
-                        "w-100 dropdown-menu" + (isOpen ? " show" : "")
+                        "w-100 dropdown-menu end-0" + (isOpen ? " show" : "")
                     }
                 >
-                    <LogOut />
+                    <Link
+                        to={`/users/${currentUser._id}`}
+                        className="dropdown-item"
+                    >
+                        Profile
+                    </Link>
+                    <Link to="/logout" className="dropdown-item">
+                        Logout
+                    </Link>
                 </div>
             </div>
         </>
