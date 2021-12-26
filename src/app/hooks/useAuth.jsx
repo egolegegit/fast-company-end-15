@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
                 email,
                 rate: randomInt(1, 5),
                 completedMeetings: randomInt(0, 200),
-                img: `https://avatars.dicebear.com/api/avataaars/${(
+                image: `https://avatars.dicebear.com/api/avataaars/${(
                     Math.random() + 1
                 )
                     .toString(36)
@@ -101,6 +101,7 @@ const AuthProvider = ({ children }) => {
             }
         }
     }
+
     async function createUser(data) {
         try {
             const { content } = await userService.create(data);

@@ -22,12 +22,14 @@ const EditUserPage = () => {
     const [professions, setProfession] = useState([]);
     const [qualities, setQualities] = useState({});
     const [errors, setErrors] = useState({});
+
     const getProfessionById = (id) => {
         for (const prof in professions) {
             const profData = professions[prof];
             if (profData._id === id) return profData;
         }
     };
+
     const getQualities = (elements) => {
         const qualitiesQrray = [];
         for (const elem of elements) {
@@ -54,9 +56,11 @@ const EditUserPage = () => {
             .then((data) => history.push(`/users/${data._id}`));
         console.log(data);
     };
+
     const transformData = (data) => {
         return data.map((qual) => ({ label: qual.name, value: qual._id }));
     };
+
     useEffect(() => {
         setIsLoading(true);
         api.users.getById(userId).then(({ profession, qualities, ...data }) =>
@@ -70,6 +74,7 @@ const EditUserPage = () => {
         api.qualities.fetchAll().then((data) => setQualities(data));
         api.professions.fetchAll().then((data) => setProfession(data));
     }, []);
+
     useEffect(() => {
         if (data._id) setIsLoading(false);
     }, [data]);
@@ -90,19 +95,24 @@ const EditUserPage = () => {
             }
         }
     };
+
     useEffect(() => validate(), [data]);
+
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }));
     };
+
     const validate = () => {
         const errors = validator(data, validatorConfog);
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
     const isValid = Object.keys(errors).length === 0;
+
     return (
         <div className="container mt-5">
             <BackHistoryButton />

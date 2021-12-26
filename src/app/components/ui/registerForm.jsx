@@ -40,6 +40,7 @@ const RegisterForm = () => {
             [target.name]: target.value
         }));
     };
+
     const validatorConfog = {
         email: {
             isRequired: {
@@ -85,14 +86,17 @@ const RegisterForm = () => {
             }
         }
     };
+
     useEffect(() => {
         validate();
     }, [data]);
+
     const validate = () => {
         const errors = validator(data, validatorConfog);
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
     const isValid = Object.keys(errors).length === 0;
 
     const handleSubmit = async (e) => {

@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React from "react";
 import { orderBy } from "lodash";
 import CommentsList, { AddCommentForm } from "../common/comments";
 import { useComments } from "../../hooks/useComments";
-import api from "../../api";
 
 const Comments = () => {
-    const { userId } = useParams();
-    const [comments, setComments] = useState([]);
-    const { createComment } = useComments();
+    const { createComment, comments } = useComments();
 
-    useEffect(() => {
-        api.comments
-            .fetchCommentsForUser(userId)
-            .then((data) => setComments(data));
-    }, []);
     const handleSubmit = (data) => {
         createComment(data);
     };
+
     const handleRemoveComment = (id) => {
-        api.comments.remove(id).then((id) => {
-            setComments(comments.filter((x) => x._id !== id));
-        });
+        // api.comments.remove(id).then((id) => {
+        // setComments(comments.filter((x) => x._id !== id));
+        // });
     };
+
     const sortedComments = orderBy(comments, ["created_at"], ["desc"]);
+
     return (
         <>
             <div className="card mb-2">
-                {" "}
                 <div className="card-body ">
                     <AddCommentForm onSubmit={handleSubmit} />
                 </div>
