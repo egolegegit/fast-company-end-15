@@ -4,7 +4,7 @@ import TextAreaField from "../form/textAreaField";
 import { validator } from "../../../utils/ validator";
 
 const AddCommentForm = ({ onSubmit }) => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState({ content: "" });
     const [errors, setErrors] = useState({});
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -27,7 +27,7 @@ const AddCommentForm = ({ onSubmit }) => {
         return Object.keys(errors).length === 0;
     };
     const clearForm = () => {
-        setData({});
+        setData({ content: "" });
         setErrors({});
     };
     const handleSubmit = (e) => {
