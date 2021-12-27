@@ -29,7 +29,7 @@ export const CommentsProvider = ({ children }) => {
             ...data,
             _id: nanoid(),
             pageId: userId,
-            useId: currentUser._id,
+            userId: currentUser._id,
             created_at: Date.now()
         };
 
